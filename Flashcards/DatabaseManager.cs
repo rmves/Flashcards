@@ -4,16 +4,21 @@ using System.Data.SqlClient;
 
 public class DatabaseManager
 {
-    private string connectionString;
+    private readonly string connectionString;
 
     public DatabaseManager(string dbConnectionString)
     {
         connectionString = dbConnectionString;
     }
 
+    private SqlConnection CreateConnection()
+    {
+        return new SqlConnection(connectionString);
+    }
+
     public void CreateDatabaseAndTables()
     {
-        using (SqlConnection connection = new SqlConnection(connectionString))
+        using (SqlConnection connection = CreateConnection())
         {
             try
             {

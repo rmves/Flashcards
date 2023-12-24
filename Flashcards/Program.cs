@@ -1,9 +1,13 @@
-﻿class Program
+﻿using System.Configuration;
+
+class Program
 {
     static void Main(string[] args)
     {
-        string connectionString = @"Data Source=(localdb)\localdbFlashcard;Integrated Security=True";
+        string connectionString = ConfigurationManager.ConnectionStrings["MyConnectionString"].ConnectionString;
         DatabaseManager dbManager = new DatabaseManager(connectionString);
         dbManager.CreateDatabaseAndTables();
+
+
     }
 }
